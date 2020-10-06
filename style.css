@@ -1,0 +1,106 @@
+@import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+@import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+body { font-family: 'Droid Serif'; }
+h1, h2, h3 {
+    color: rgb(69,88,115);
+    font-family: 'Yanone Kaffeesatz';
+    font-weight: normal;
+}
+.remark-code, .remark-inline-code {
+    font-family: 'Ubuntu Mono';
+}
+
+/* VESTEC blue = rgb(69,88,115) */
+
+h1 {
+    position: relative;
+    z-index: 10;
+}
+
+.remark-slide-number {
+    color: rgb(69,88,115);
+    opacity: 1.0;
+}
+
+.remark-code {
+  font-size: 16px;
+}
+.remark-slide-content {
+  padding: 1em 2em 1em 2em;
+}
+
+/* Fix the footer bar in position */
+div.footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    height: 60px;
+    width: 100%;
+    text-align: left;
+}
+
+div.footer:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+div.footer img {
+    vertical-align: middle;
+    max-height: 60px;
+    padding-left: 20px;
+}
+
+div.footer p {
+    position: relative;
+    left: 20px;
+    bottom: 8px;
+    font-size: smaller;
+}
+
+/* Make title box VESTEC blue */
+div.titlebox {
+    background-color: rgb(69,88,115);
+    color: white;
+    padding: 1em 0;
+}
+/* And the text in it white */
+div.titlebox h1, h2, h3 {
+    color: white;
+}
+
+/* Fix footnotes box to just above foot box */
+div.footnotes {
+    position: fixed;
+    bottom: 40px;
+    font-size: smaller;
+}
+
+/* Enable two column layout */
+.columns {
+    display: flex;
+}
+.col {
+    width: 50%;
+    padding: 0 1%;
+    box-sizing: border-box;
+}
+
+
+@page {
+    size: 908px 681px;
+    margin: 0;
+}
+
+@media print {
+    .remark-slide-scaler {
+	width: 100% !important;
+	height: 100% !important;
+	transform: scale(1) !important;
+	top: 0 !important;
+	left: 0 !important;
+    }
+}
