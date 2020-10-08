@@ -1,3 +1,4 @@
+
 template: titleslide
 
 # Supercomputing with MPI meets the Common Workflow Language standards
@@ -573,6 +574,28 @@ This workflow
   file with the fields of interest for use later in the outer workflow.
 
 ---
+# Containers
+
+Michael?
+
+
+--
+# Software requirements
+
+Another challenge to supporting the execution of portable workflows on
+supercomputers is the requirement for custom-compiled software and the
+lack of software containers for performance reasons. This is somewhat
+orthogonal to the classic CWL approach, as the standards have long
+supported both software containers and references to the name (and
+published identifier, if available) of the software tool. The CWL
+reference runner has a feature which maps these software identifiers to
+locally available software packages, and loads them in a site-specific
+way using a local configuration\[3\]. We have adopted this same approach
+within the VESTEC system, which ensures that our workflows are portable
+between target HPC systems.
+
+
+---
 # Limitations
 
 We have given the Common Workflow *Language* only a very simple model
@@ -608,8 +631,47 @@ everyone who's been doing HPC for a while knows there's a lot more
   domain? How do you tell your `mpirun` program this?
 
 ---
-# Containers
+# Limitations (aka TODO list)
 
-Michael
+Specify version of the MPI standard required 
+
+Specify level of thread support required by application
+
+More complete testing with software containers
+
+???
+
+Working towards version 4.0 at present
+
+Thread support can be one of 4 levels (SINGLE, FUNNELED, SERIALIZED,
+MULTIPLE)
+
+---
+# Conclusions
+
+We have created a minimal extension to the CWL specification that
+allows a tool to specify that it requires an MPI job launcher and way
+to set the number of MPI processes to start
+
+We have implemented this, and a mechanism for platform configuration,
+within the CWL reference runner
+
+VESTEC authors happy
+- to find CWL was powerful and flexible enough to be altered to support MPI
+- CWL developers were open to helping make these alterations and accepting them
+- software requirements feature of CWL could help make our tool descriptions more portable
+- multi-step CWL workflows could simplify our larger workflow system
+
+MRC as a member of the CWL/bioinformatic community was happy
+- find a new user community
+- be confirmed in the value of open standards
+
+Goal: progress `MPIRequirement` or equivalent to CWL standard
+
+
+???
+
+num of MPI procs can be hard coded, supplied as an input directly, or
+calculated in any way allowed by a JavaScript expression
 
 ---
