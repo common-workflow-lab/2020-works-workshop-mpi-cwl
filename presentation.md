@@ -764,34 +764,41 @@ Wired cwltool + SoftwareRequirements to `module load MesoNH` etc
 
 ![:sec_slide](What do you all think?)
 
+???
+Speaker: Rupe
+
+I'll mention some issues we know about, sum up, and ask for your
+thoughts.
+
 ---
 # Limitations
 
 We have given the Common Workflow *Language* only a very simple model
-of an MPI program: the number of processes to start
+of an MPI program: the number of processes to start.
 
 Users of HPC codes often need to consider:
 
-- hybric parallelism, e.g. OpenMP, 
+- hybrid parallelism, e.g. OpenMP;
 
-- Node memory architecture
+- node memory architecture + process placement;
 
-- Use of hyperthreads
+- use of hyperthreads
+
+- MPI implementation-dependent things (*e.g.* progress engine threads)
 
 For now, we can set these via the reference runner's platform
-configuration file, but that applies across all tools run by
-invocation
+configuration file, but that applies across **all** tools run by
+invocation.
 
 We have "deferred this to future work", although our feeling is that
 this could be tackled with the overrides feature of the reference
-runner
+runner.
 
 Other suggestions would be appreciated!
 
 ???
 
 Speaker: Rupe
-
 
 The number of processes is probably the most important parameter but
 everyone who's been doing HPC for a while knows there's a lot more
@@ -803,17 +810,19 @@ everyone who's been doing HPC for a while knows there's a lot more
   domain? How do you tell your `mpirun` program this?
 
 ---
-# Limitations (aka TODO list)
+# Limitations
 
-Specify version of the MPI standard required 
+Specify version of the MPI standard required.
 
-Specify level of thread support required by application
+Specify level of thread support required by application.
 
-More complete testing with software containers
+More complete testing with software containers.
 
 ???
 
 Speaker: Rupe
+
+A few smaller things we will definitely look at:
 
 Working towards MPI version 4.0 at present
 
