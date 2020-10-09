@@ -9,15 +9,6 @@ Paper: https://arxiv.org/abs/2010.00422
 Slides: https://common-workflow-lab.github.io/2020-works-workshop-mpi-cwl/
 
 ---
-# Talk Overview
-
-![:sec_slide](Problem statement)
-
-???
-
-Speaker: Rupe
-
----
 
 # Who?
 .center[
@@ -58,19 +49,37 @@ Speaker: Rupe
 Speaker: Rupe
 
 ---
+# Talk Overview
+
+![:sec_slide](Problem statement)
+
+???
+
+Speaker: Rupe
+
+Since this is an "experience report" , want to tell a bit of a story
+
+- about how this work came about,
+- the 90% solution we found (spoiler alert - it's CWL),
+- the work we (VESTEC) did with the CWL community (Michael) to produce
+a solution
+- that meets our basic needs and had a few unanticipated benefits
+- talk about the limitations and solicit thoughts on how to take this
+  forwards 
+
+---
 
 # Problem statement
 
 .columns[
 
 .col2[
-The VESTEC (Visual Exploration and Sampling Toolkit for Extreme Computing) project seeks to fuse HPC and real-time data for urgent decision making for disaster response.
 
+The VESTEC (Visual Exploration and Sampling Toolkit for Extreme Computing) project seeks to fuse HPC and real-time data for urgent decision making for disaster response.
+  
 We need to run workflows that included MPI-parallelised applications on HPC.
 
 We didn't want to reinvent all the wheels.
-
-(But we did create a custom workflow management system, see G. Gibb *et al.*, UrgentHPC workshop 2020.)
 
 ]
 .col2[
@@ -89,7 +98,6 @@ Example workflow from VESTEC of wild fire monitoring.
 
 Speaker: Rupe
 
-Want to tell a bit of a story about how this work came about.
 
 Rupe, Nick, Max are working on VESTEC.
 
@@ -111,19 +119,29 @@ what-if scenario exploration, interactive visualisation of results.
 ---
 # Problem statement
 
-But we didn't want to implement *all* of the parts of a WMS, in
-particular we believed that existing tools existed that could
+.columns[
+.col2[
+
+While we did create a custom workflow management system (see G. Gibb *et al.*, UrgentHPC workshop 2020), we really didn't want to implement *all* of the parts of a WMS.
+
+In particular we believed that tools must exist that could:
 
 - describe step inputs
 - actually execute the (MPI-parallel) program
 - describe any generated outputs
 - represent this in a structured way
 
-And ideally wanted this in a standardised way
+And ideally wanted this in a standardised way.
 
---
+We found that CWL was our closest match.
 
-We found that CWL could do most of this.
+]
+.col2[
+![XKCD standards](https://imgs.xkcd.com/comics/standards.png)
+
+Randall Monroe, https://xkcd.com/927/
+]
+]
 
 ???
 
@@ -146,22 +164,24 @@ Spoiler alert: CWL
 
 Speaker: Rupe
 
+So why didn't CWL work with MPI?
+
 ---
 # Message Passing Interface
 
-The Message Passing Interface (MPI) is an important standard for HPC
-(*i.e.* large, tightly-coupled simulations)
+The Message Passing Interface (MPI) is an important standard for HPC,
+*i.e.* large, tightly-coupled simulations.
 
 Start many copies of the same program, which differ only by a unique
-index (their rank)
+index (their rank).
 
-MPI is a library allowing them to perform
+MPI is a library allowing them to perform:
 - point-to-point and collective communication
 - synchronisation operations,
 - IO
 - more
 
-Typically MPI programs have to be started by a special launcher
+Typically MPI programs have to be started by a special launcher:
 
 ```bash
 mpiexec -n $NPROCS $APPLICATION $ARGS
@@ -172,6 +192,9 @@ mpiexec -n $NPROCS $APPLICATION $ARGS
 Speaker: Rupe
 
 With apologies to audience members, this is MPI in one slide
+
+Large > 1k working together on the same problem
+So not embarassingly parallel: ensembles/parameters sweeps
 
 The MPI standard specifically does not require this or any other way
 to start programs, but recommends that this method be available.
@@ -249,23 +272,25 @@ Speaker: Michael
 
 Speaker: Michael
 
+
+
 ---
 # A first attempt within standard MPI
 
 .columns[
 .col2[
 
-Since CWL supports using JavaScript to provide values to many elements
+Since CWL supports using JavaScript to compute values for some elements
 within a tool description, RWN created a few functions to
 programmatically insert the necessary MPI job launch commands to the
 front of the command line string.
 
-- Worked on laptop
-- Worked on ARCHER
-- Requires NodeJS
-- Ugly tool description
-- Failed on Cirrus (SLURM requires environment variables to be set)
-- Failed to work with containers
+- 🙂 Worked on laptop
+- 🙂 Worked on ARCHER (Cray XC30, UK National Supercomputing Service)
+- 😐 Requires NodeJS
+- 🤢 Ugly tool description
+- ☹️ Failed on SLURM-based cluster (requires environment variables to be set)
+- ☹️ Failed to work with containers
 
 ]
 
@@ -300,10 +325,12 @@ outputs: []
 
 Speaker: Rupe
 
-After reaching out to the CWL community and starting to work with
-Michael, it became clear that MPI execution had to be treated
-differently and integrated with the job runner, comparable to software
-container runtimes
+Kinda worked, but wasn't fit for purpose, so I reached out via Github
+to the CWL community
+
+After starting to work with Michael, it became clear that MPI
+execution had to be treated differently and integrated with the job
+runner, comparable to software container runtimes
 
 ---
 # Requirements
@@ -347,12 +374,12 @@ Speaker: Michael
 # Extension to the CWL specification
 .columns[
 .col2[
-CWL supports the concept of a requirement which "modifies the semantics
-or runtime environment of a process"
+CWL supports the concept of a requirement which "[modifies the semantics
+or runtime environment of a process](https://www.commonwl.org/v1.1/CommandLineTool.html#Requirements_and_hints)".
 
-The minimum features we need are
+The minimum features we need are:
 - to enable the requirement, and
-- to pass through the number of MPI processes to start
+- to pass through the number of MPI processes to start.
 
 The number of processes can either be a plain integer or a CWL
 `Expression` which evaluates to an integer.
@@ -361,6 +388,7 @@ This was added to the CWL reference runner as an extension, requiring the `--ena
 
 ]
 .col2[
+
 ``` yaml
 - name: MPIRequirement
   type: record
@@ -375,6 +403,9 @@ This was added to the CWL reference runner as an extension, requiring the `--ena
     - name: processes
       type: [int, string]
 ```
+
+SALAD Schema for new requirement, [source](https://github.com/common-workflow-language/cwltool/blob/84939620c3eec1ab11369849c63237ebfa48da41/cwltool/extensions.yml#L158).
+
 ]
 ]
 
@@ -382,15 +413,14 @@ This was added to the CWL reference runner as an extension, requiring the `--ena
 
 Speaker: Michael
 
- (we
-treat the case of zero processes requested as being equivalent to
-disabling the requirement).
+We treat the case of zero processes requested as being equivalent to
+disabling the requirement.
 
 Note the we're talking here about the tool description. An expression
-can use say an input to produce an integer
+can use, say, an input to produce an integer
 
 ---
-# Hello again
+# Hello world in parallel
 
 .columns[
 .col2[
@@ -450,6 +480,14 @@ outputs: []
 
 Speaker: Michael & Rupe
 
+Left: the hello world shown before and on the right is a comparable
+one that accepts the number of processes to start as an input
+
+Michael: CWL side thoughts: namespace
+
+Rupe: fairly simple from a user's POV, just need to figure out how to
+choose the number of processes (which you'd have to do anyway)
+
 ---
 # Platform configuration
 
@@ -470,54 +508,66 @@ the platform configuration data.
 
 Speaker: Rupe
 
+We also had to have a way to adapt to the various HPC systems we used
+and settled on this
+
 Within the runner, this argument, if present, is used to configure the
-MPI runtime. When a tool is actually executed, the runner checks for the
+MPI runtime (although there defaults in the code).
+
+When a tool is actually executed, the runner checks for the
 `MPIRequirement`, evaluates the processes attribute and, if present and
 non-zero, it uses the configuration data, to construct the appropriate
-command line which is prepended to the tool's command line
+command line which is prepended to the tool's command line.
 
-I'll show an example below
-
-
+I'll show an example in a few slides.
 
 ---
 # Talk Overview
 
-![:sec_slide](CWL+MPI works for us (with bonus features!))
+![:sec_slide](CWL+MPI works for us - with bonus features!)
+
+???
+
+Given we're talking about this, it's not surprising it worked, but we
+in VESTEC had a few unanticipated bonuses
 
 ---
 # We showed that it works
 
-A modest number of unit tests 
+A modest number of unit tests.
 
-Use within VESTEC WMS to wrap individual tasks
+Used within VESTEC WMS to wrap individual tasks.
 
 ???
 
 Speaker: Rupe
 
-Unanticipated benefits
+14 tests
+
+And also small sub-workflows
 
 ---
 # Use with workflows
 
 .columns[
 .col2[
-CWL supports composing a set of steps into a workflow
+CWL supports composing a set of steps into a workflow.
 
-Useful for VESTEC for cases when there are steps that will always be co-located  
-*e.g.* pre-processing > simulation > post-processing
+Useful for VESTEC for cases when there are steps that will always occur together  
+*e.g.* pre-processing > simulation > post-processing.
 
 Composing tool executions with different MPI requirements worked
-transparently
+transparently.
 
-Uses the same platform configuration for all MPI steps
+Uses the same platform configuration for all MPI steps.
 
 ]
 .col2[
-
-Example sub workflow from wildfire use case: localised weather simulation
 ![:scale_img 100%](paper/mnh.png)
+
+Example sub workflow from wildfire use case: localised weather
+simulation.
+
 Blue: input(s)  
 Magenta: MPI step  
 Yellow: non-MPI step  
@@ -531,12 +581,14 @@ Speaker: Rupe
 
 This workflow
 - uses one or more global weather forecasts from the US NOAA Global
-  Forecast System (GFS_GRIBS input) (potentially real time, published
-  every 6hrs)
+  Forecast System (`gfs_gribs` input) (potentially real time, published
+  every 6hrs).
 
-- interpolates the meterological fields onto the domain for the
-  simulation (specified by the input `pdg`, *i.e.* the physiographic
-  data)
+- `PREP_GFS` step interpolates the meterological fields onto the
+  domain for the simulation (specified by the input `pdg`, *i.e.* the
+  physiographic data) - this step has to be run on a compute node on
+  ARCHER so has to be `aprun`ed as a single process MPI job.
+  
 - runs the Meso-NH mesoscale atmospheric simulation application in
   parallel (as specified by the `sim_processes` input) using the GFS
   data provided as initial and boundary conditions, for an experiment
@@ -551,15 +603,15 @@ This workflow
 
 .columns[
 .col2[
-Generally accepted as important in HPC
+Generally accepted as important in HPC.
 
-Some centres monitor user jobs by default or sampling
+Some centres monitor user jobs by default or sampling.
 
 Various tools, including LIKWID
-https://hpc.fau.de/research/tools/likwid/
+<https://hpc.fau.de/research/tools/likwid/>.
 
 Can use the MPI configuration file to construct an appropriate command
-line
+line.
 ]
 .col2[
 ``` yaml
@@ -574,7 +626,7 @@ nproc_flag: -n
 env_pass_regex: ["SLURM_.*"]
 ```
 
-<span style="font-size: smaller">Platform configuration file for using LIKWID on a SLURM-based cluster at DLR</span>
+Platform configuration file for using LIKWID on a SLURM-based cluster at DLR.
 
 ]
 ]
@@ -589,17 +641,18 @@ common in the HPC and supercomputing community.
 
 When a workflow may execute very many parallel jobs this is even more so.
 
-Some centres do this to proactively monitor for errors and 
+Some centres do this to proactively monitor for errors/failing
+components. Others just to track usage in more detail.
 
 LIKWID from Friedrich-Alexander-Universität (FAU)
 
 ---
 # Performance monitoring
 
-We decided to validate this using the high-performance conjugate
-gradient benchmark (http://www.hpcg-benchmark.org)
+We validated this using the high-performance conjugate
+gradient benchmark (http://www.hpcg-benchmark.org).
 
-Ran on DLR cluster (4 x 14 core Intel Xeon Gold 6132 per node)
+Ran on DLR cluster (4 x 14 core Intel Xeon Gold 6132 per node).
 
 .centre[
 <table style="width: 90%; border-collapse: collapse;">
@@ -670,14 +723,16 @@ efficiently.
 We can vary the metrics collected by simply changing the platform
 configuration file!
 
-Another unanticipated benefit: actually doing workflows
-
-
 ---
 # Containers
 
 Also tested successfully (once) with the Singularity software container engine using a Docker format software container. 
 
+Mention the "classic CWL approach, as the standards have long
+supported both software containers and references to the name (and
+published identifier, if available) of the software tool".
+
+???
 Speaker: Michael
 
 
@@ -687,22 +742,22 @@ Speaker: Michael
 
 
 Another challenge to supporting the execution of portable workflows on
-supercomputers is the requirement for custom-compiled software and the
-lack of software containers for performance reasons. This is somewhat
-orthogonal to the classic CWL approach, as the standards have long
-supported both software containers and references to the name (and
-published identifier, if available) of the software tool. The CWL
-reference runner has a feature which maps these software identifiers to
-locally available software packages, and loads them in a site-specific
-way using a local configuration\[3\]. We have adopted this same approach
-within the VESTEC system, which ensures that our workflows are portable
-between target HPC systems.
+supercomputers is the requirement for custom-compiled software.
+
+(Software containers are not widely used on HPC systems performance/security/historical reasons.)
+
+The CWL reference runner has a feature which maps these software
+identifiers to locally available software packages, and loads them in
+a site-specific way using a local configuration.
+
+We have adopted this same approach within the VESTEC system, which
+ensures that our workflows are portable between target HPC systems.
 
 ???
 
 Speaker: Rupe
 
-Wired cwltool + SoftwareRequirements to `module load FOOBAR`
+Wired cwltool + SoftwareRequirements to `module load MesoNH` etc
 
 ---
 # Talk Overview
