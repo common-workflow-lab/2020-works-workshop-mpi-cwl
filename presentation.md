@@ -8,7 +8,7 @@ template: titleslide
 ---
 # Talk Overview
 
-1. Problem statement
+1. **Problem statement**
 1. Almost solution
 1. Working with CWL to add MPI
 1. CWL+MPI works for us
@@ -20,9 +20,15 @@ template: titleslide
 
 - [Rupe Nash](https://orcid.org/0000-0002-6388-7353) & [Nick Brown](https://orcid.org/0000-0003-2925-7275) at EPCC, University of Edinburgh
 
+![:scale_img 25%](RupertWNash.jpg) ![:scale_img 25%](nickbrown.png)
+
 - [Max Kontak](https://orcid.org/0000-0003-3738-7483) at DLR German Aerospace Center
 
+![:scale_img 25%](MaxKontak.jpg)
+
 - [Michael R. Crusoe](https://orcid.org/0000-0002-2961-9670) at VU Amsterdam / CommonWL project leader
+
+![:scale_img 25%](MichaelRCrusoe.png)
 
 ---
 
@@ -37,41 +43,29 @@ We need to run workflows that included MPI-parallelised applications on HPC.
 
 We didn't want to reinvent all the wheels.
 
-(But we did create a custom workflow management system, see G. Gibb *et al.*, UrgentHPC workshop 2020)
+(But we did create a custom workflow management system, see G. Gibb *et al.*, UrgentHPC workshop 2020.)
 
 ]
 .col2[
-Example workflow from VESTEC of wild fire monitoring
 
 .center[
 ![:scale_img 90%](wildfire-full.png)
 ]
 
-*Thanks to Gordon Gibb for the image*
+Example workflow from VESTEC of wild fire monitoring.
+
+*Thanks to Gordon Gibb for the image.*
 ]
 ]
 
 ???
 
-Want to tell a bit of a story about how this work came about
+Want to tell a bit of a story about how this work came about.
 
-Rupe, Nick, Max are working on VESTEC
+Rupe, Nick, Max are working on VESTEC.
 
 VESTEC clearly requires a workflow approach, in part to automate
-as much as possible for speed and accuracy
-
-VESTEC has created a custom workflow management system, see
-G. Gibb *et al.*, UrgentHPC workshop 2020
-
----
-# Example use case: Wildfire
-.center[
-![:scale_img 70%](wildfire-full.png)
-]
-
-*Thanks to Gordon Gibb for the image*
-
-???
+as much as possible for speed and accuracy.
 
 The simplest case requires
 - receiving data
@@ -86,13 +80,7 @@ further simulations in response to results or new data, allowing
 what-if scenario exploration, interactive visualisation of results.
 
 ---
-
-# Motivation
-
-VESTEC has created a custom workflow management system, see
-G. Gibb *et al.*, UrgentHPC workshop 2020
-
---
+# Problem statement
 
 But we didn't want to implement *all* of the parts of a WMS, in
 particular we believed that existing tools existed that could
