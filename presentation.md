@@ -207,7 +207,7 @@ CWL defines a standard for describing command line tools and workflows made from
 It aims to model the requirements of those tools explicitly to enable flexibility and portability.
 
 For example, if you want to use Docker, you don't manually specify "docker run my_container foo"; you say which Docker format container is recommended or required. The workflow engine sets up everything else.
-![CWL Logo](https://github.com/common-workflow-language/logo/raw/main/CWL-Logo-HD.png)
+![CWL Logo:scale_img 100%](https://github.com/common-workflow-language/logo/raw/main/CWL-Logo-HD.png)
 
 ???
 
