@@ -9,9 +9,9 @@ template: titleslide
 # Talk Overview
 
 1. **Problem statement**
-1. Almost solution
-1. Working with CWL to add MPI
-1. CWL+MPI works for us
+1. Existing standard meets many needs, but lacks MPI
+1. Working with the CWL community to add MPI
+1. CWL+MPI works for us (with bonus features!)
 1. What do you all think?
 
 ---
@@ -20,15 +20,15 @@ template: titleslide
 
 - [Rupe Nash](https://orcid.org/0000-0002-6388-7353) & [Nick Brown](https://orcid.org/0000-0003-2925-7275) at EPCC, University of Edinburgh
 
-![:scale_img 25%](RupertWNash.jpg) ![:scale_img 25%](nickbrown.png)
+![:scale_img 12%](RupertWNash.jpg) ![:scale_img 12%](nickbrown.png)
 
 - [Max Kontak](https://orcid.org/0000-0003-3738-7483) at DLR German Aerospace Center
 
-![:scale_img 25%](MaxKontak.jpg)
+![:scale_img 12%](MaxKontak.jpg)
 
 - [Michael R. Crusoe](https://orcid.org/0000-0002-2961-9670) at VU Amsterdam / CommonWL project leader
 
-![:scale_img 25%](MichaelRCrusoe.png)
+![:scale_img 12%](MichaelRCrusoe.png)
 
 ---
 
@@ -107,7 +107,16 @@ bunch of bash scripts on each HPC machine used
 Spoiler alert: CWL
 
 ---
+# Talk Overview
 
+1. Problem statement
+1. **Existing standard meets many needs, but lacks MPI**
+1. Working with the CWL community to add MPI
+1. CWL+MPI works for us (with bonus features!)
+1. What do you all think?
+
+
+---
 # Message Passing Interface
 
 The Message Passing Interface (MPI) is an important standard for HPC
@@ -142,7 +151,7 @@ Michael pls add a slide or two for you to introduce CWL
 
 ???
 
-Do you want to cover why MPI progs don't work in standard CWL?
+Do you want to cover why MPI progs don't work in standard CWL? MPI affects scheduling and executation
 I.e. the following are implementation/system dependent:
  - the actual name of the `mpiexec` command
  - the flag to set number of processes
@@ -192,6 +201,16 @@ INFO Final process status is success
 ```
 ]
 ]
+
+---
+# Talk Overview
+
+1. Problem statement
+1. Existing standard meets many needs, but lacks MPI
+1. **Working with the CWL community to add MPI**
+1. CWL+MPI works for us (with bonus features!)
+1. What do you all think?
+
 
 ---
 # A first attempt within standard MPI
@@ -407,8 +426,20 @@ command line which is prepended to the tool's command line
 
 I'll show an example below
 
+
+
+
 ---
-# Testing
+# Talk Overview
+
+1. Problem statement
+1. Existing standard meets many needs, but lacks MPI
+1. Working with the CWL community to add MPI
+1. **CWL+MPI works for us (with bonus features!)**
+1. What do you all think?
+
+---
+# We showed that it works
 
 A modest number of unit tests 
 
@@ -416,8 +447,53 @@ Use within VESTEC WMS to wrap individual tasks
 
 ???
 
-
 Unanticipated benefits
+
+---
+# Use with workflows
+
+.columns[
+.col2[
+CWL supports composing a set of steps into a workflow
+
+Useful for VESTEC for cases when there are steps that will always be co-located  
+*e.g.* pre-processing > simulation > post-processing
+
+Composing tool executions with different MPI requirements worked
+transparently
+
+Uses the same platform configuration for all MPI steps
+
+]
+.col2[
+
+Example sub workflow from wildfire use case: localised weather simulation
+![:scale_img 100%](paper/mnh.png)
+Blue: input(s)  
+Magenta: MPI step  
+Yellow: non-MPI step  
+Purple: output(s)  
+]
+]
+
+???
+
+This workflow
+- uses one or more global weather forecasts from the US NOAA Global
+  Forecast System (GFS_GRIBS input) (potentially real time, published
+  every 6hrs)
+
+- interpolates the meterological fields onto the domain for the
+  simulation (specified by the input `pdg`, *i.e.* the physiographic
+  data)
+- runs the Meso-NH mesoscale atmospheric simulation application in
+  parallel (as specified by the `sim_processes` input) using the GFS
+  data provided as initial and boundary conditions, for an experiment
+  of simulated duration `segment_length`
+
+- The outputs of this are then post-processed by a script into a single netCDF
+  file with the fields of interest for use later in the outer workflow.
+
 
 ---
 # Performance monitoring
@@ -541,50 +617,6 @@ configuration file!
 
 Another unanticipated benefit: actually doing workflows
 
----
-# Use with workflows
-
-.columns[
-.col2[
-CWL supports composing a set of steps into a workflow
-
-Useful for VESTEC for cases when there are steps that will always be co-located  
-*e.g.* pre-processing > simulation > post-processing
-
-Composing tool executions with different MPI requirements worked
-transparently
-
-Uses the same platform configuration for all MPI steps
-
-]
-.col2[
-
-Example sub workflow from wildfire use case: localised weather simulation
-![:scale_img 100%](paper/mnh.png)
-Blue: input(s)  
-Magenta: MPI step  
-Yellow: non-MPI step  
-Purple: output(s)  
-]
-]
-
-???
-
-This workflow
-- uses one or more global weather forecasts from the US NOAA Global
-  Forecast System (GFS_GRIBS input) (potentially real time, published
-  every 6hrs)
-
-- interpolates the meterological fields onto the domain for the
-  simulation (specified by the input `pdg`, *i.e.* the physiographic
-  data)
-- runs the Meso-NH mesoscale atmospheric simulation application in
-  parallel (as specified by the `sim_processes` input) using the GFS
-  data provided as initial and boundary conditions, for an experiment
-  of simulated duration `segment_length`
-
-- The outputs of this are then post-processed by a script into a single netCDF
-  file with the fields of interest for use later in the outer workflow.
 
 ---
 # Containers
@@ -606,7 +638,14 @@ locally available software packages, and loads them in a site-specific
 way using a local configuration\[3\]. We have adopted this same approach
 within the VESTEC system, which ensures that our workflows are portable
 between target HPC systems.
+---
+# Talk Overview
 
+1. Problem statement
+1. Existing standard meets many needs, but lacks MPI
+1. Working with the CWL community to add MPI
+1. CWL+MPI works for us (with bonus features!)
+1. **What do you all think?**
 
 ---
 # Limitations
