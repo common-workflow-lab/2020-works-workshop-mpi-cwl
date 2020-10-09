@@ -71,7 +71,9 @@ div.titlebox {
 div.titlebox h1, h2, h3 {
     color: white;
 }
-
+div.titlebox a {
+    color: white;
+}
 /* Fix footnotes box to just above foot box */
 div.footnotes {
     position: fixed;
@@ -94,6 +96,11 @@ div.footnotes {
     padding: 0 1%;
     box-sizing: border-box;
 }
+.col4 {
+    width: 25%;
+    padding: 0 1%;
+    box-sizing: border-box;
+}
 
 @page {
     size: 908px 681px;
@@ -108,4 +115,15 @@ div.footnotes {
 	top: 0 !important;
 	left: 0 !important;
     }
+}
+
+table.authors {
+  table-layout: fixed;
+  width: 100%;
+}
+table.authors td {
+  width: 25%;
+}
+table.authors img {
+    width: 80%;
 }

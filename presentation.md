@@ -1,9 +1,12 @@
 
 template: titleslide
 
-# [Supercomputing with MPI meets the Common Workflow Language standards](https://arxiv.org/abs/2010.00422)
+# Supercomputing with MPI meets the Common Workflow Language standards
 # An experience report
 ## [Rupert W. Nash](https://orcid.org/0000-0002-6388-7353), [Michael R. Crusoe](https://orcid.org/0000-0002-2961-9670), [Max Kontak](https://orcid.org/0000-0003-3738-7483), [Nick Brown](https://orcid.org/0000-0003-2925-7275)
+
+Paper: https://arxiv.org/abs/2010.00422  
+Slides: https://common-workflow-lab.github.io/2020-works-workshop-mpi-cwl/
 
 ---
 # Talk Overview
@@ -21,18 +24,38 @@ Speaker: Rupe
 ---
 
 # Who?
+.center[
+<table class="authors">
+<tr>
+<td>
+<a href="https://orcid.org/0000-0002-6388-7353">Rupe Nash</a>
+</td>
+<td>
+<a href="https://orcid.org/0000-0003-2925-7275">Nick Brown</a>
+</td>
+<td>
+<a href="https://orcid.org/0000-0003-3738-7483">Max Kontak</a>
+</td>
+<td>
+<a href="https://orcid.org/0000-0002-2961-9670">Michael R. Crusoe</a>
+</td>
+</tr>
 
-- [Rupe Nash](https://orcid.org/0000-0002-6388-7353) & [Nick Brown](https://orcid.org/0000-0003-2925-7275) at EPCC, University of Edinburgh
+<tr>
+<td>EPCC, University of Edinburgh</td>
+<td>EPCC, University of Edinburgh</td>
+<td>DLR German Aerospace Center</td>
+<td>VU Amsterdam / CommonWL project leader</td>
+</tr>
 
-![:scale_img 12%](RupertWNash.jpg) ![:scale_img 12%](nickbrown.png)
-
-- [Max Kontak](https://orcid.org/0000-0003-3738-7483) at DLR German Aerospace Center
-
-![:scale_img 12%](MaxKontak.jpg)
-
-- [Michael R. Crusoe](https://orcid.org/0000-0002-2961-9670) at VU Amsterdam / CommonWL project leader
-
-![:scale_img 12%](MichaelRCrusoe.png)
+<tr>
+<td><img src="RupertWNash.jpg" /></td>
+<td><img src="nickbrown.png" /></td>
+<td><img src="MaxKontak.jpg" /></td>
+<td><img src="MichaelRCrusoe.png" /></td>
+</tr>
+</table>
+]
 
 ???
 
