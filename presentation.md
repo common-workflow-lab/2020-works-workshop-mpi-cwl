@@ -11,11 +11,7 @@ Slides: https://common-workflow-lab.github.io/2020-works-workshop-mpi-cwl/
 ---
 # Talk Overview
 
-1. **Problem statement**
-1. Existing standard meets many needs, but lacks MPI
-1. Working with the CWL community to add MPI
-1. CWL+MPI works for us (with bonus features!)
-1. What do you all think?
+![:sec_slide](Problem statement)
 
 ???
 
@@ -144,11 +140,7 @@ Spoiler alert: CWL
 ---
 # Talk Overview
 
-1. Problem statement
-1. **Existing standard meets many needs, but lacks MPI**
-1. Working with the CWL community to add MPI
-1. CWL+MPI works for us (with bonus features!)
-1. What do you all think?
+![:sec_slide](Existing standard meets many needs, but lacks MPI)
 
 ???
 
@@ -251,11 +243,7 @@ Speaker: Michael
 ---
 # Talk Overview
 
-1. Problem statement
-1. Existing standard meets many needs, but lacks MPI
-1. **Working with the CWL community to add MPI**
-1. CWL+MPI works for us (with bonus features!)
-1. What do you all think?
+![:sec_slide](Working with the CWL community to add MPI)
 
 ???
 
@@ -495,11 +483,7 @@ I'll show an example below
 ---
 # Talk Overview
 
-1. Problem statement
-1. Existing standard meets many needs, but lacks MPI
-1. Working with the CWL community to add MPI
-1. **CWL+MPI works for us (with bonus features!)**
-1. What do you all think?
+![:sec_slide](CWL+MPI works for us (with bonus features!))
 
 ---
 # We showed that it works
@@ -723,11 +707,7 @@ Wired cwltool + SoftwareRequirements to `module load FOOBAR`
 ---
 # Talk Overview
 
-1. Problem statement
-1. Existing standard meets many needs, but lacks MPI
-1. Working with the CWL community to add MPI
-1. CWL+MPI works for us (with bonus features!)
-1. **What do you all think?**
+![:sec_slide](What do you all think?)
 
 ---
 # Limitations
@@ -814,5 +794,3 @@ Speaker: Rupe & Michael
 
 num of MPI procs can be hard coded, supplied as an input directly, or
 calculated in any way allowed by a JavaScript expression
-
----

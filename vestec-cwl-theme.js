@@ -126,10 +126,41 @@ function Footnoter() {
     };
 }
 
+function Sectioner() {
+    var self = this;
+    this.items = [];
+    this.add = function() {
+	self.items.push(this);
+	return "<ol class=\"toc\" id=\"" + self.items.length + "\"></ol>";
+    };
+    this.fixup = function() {
+	var n = self.items.length;
+	var maybe_toc = document.getElementsByClassName("toc");
+	for (let item of maybe_toc) {
+	    if (item.tagName == "OL") {
+		var idx = item.id;
+		for (var i = 0; i < n; i++) {
+		    var text = document.createTextNode(self.items[i]);
+		    var li = document.createElement("li");
+		    item.appendChild(li);
+		    if (i == (idx - 1)) {
+			var strong = document.createElement("strong");
+			li.appendChild(strong);
+			strong.appendChild(text);
+		    } else {
+			li.appendChild(text);
+		    }
+		}
+	    }
+	}
+    };
+}
+
 // Can override the header and footer macros to customise text
 function VCTheme() {
     this.base = (str => str.substring(0, str.lastIndexOf("/")))(document.currentScript.src);
     this.fn = new Footnoter();
+    this.sec = new Sectioner();
     // Capture this for use in closures
     var self = this;
     this.footer_text = "";
@@ -141,6 +172,7 @@ function VCTheme() {
 	    var url = this;
 	    return '<img src="' + url + '" style="width: ' + percentage + '" />';
 	},
+	sec_slide: this.sec.add,
 	fn_start: this.fn.clear,
 	fn_clear: this.fn.clear,
 	fn_show: this.fn.end,
