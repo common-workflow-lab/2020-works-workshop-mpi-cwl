@@ -1,33 +1,55 @@
 
 template: titleslide
 
-# Supercomputing with MPI meets the Common Workflow Language standards
+# [Supercomputing with MPI meets the Common Workflow Language standards](https://arxiv.org/abs/2010.00422)
 # An experience report
-## Rupert W. Nash, Michael R. Crusoe, Max Kontak, Nick Brown
+## [Rupert W. Nash](https://orcid.org/0000-0002-6388-7353), [Michael R. Crusoe](https://orcid.org/0000-0002-2961-9670), [Max Kontak](https://orcid.org/0000-0003-3738-7483), [Nick Brown](https://orcid.org/0000-0003-2925-7275)
+
+---
+# Talk Overview
+
+1. Problem statement
+1. Almost solution
+1. Working with CWL to add MPI
+1. CWL+MPI works for us
+1. What do you all think?
 
 ---
 
 # Who?
 
-- Rupe Nash & Nick Brown at EPCC, University of Edinburgh
+- [Rupe Nash](https://orcid.org/0000-0002-6388-7353) & [Nick Brown](https://orcid.org/0000-0003-2925-7275) at EPCC, University of Edinburgh
 
-- Max Kontak at DLR German Aerospace Center
+- [Max Kontak](https://orcid.org/0000-0003-3738-7483) at DLR German Aerospace Center
 
-- Michael Crusoe at Vrije Universiteit, Amsterdam / CommonWL project leader
+- [Michael R. Crusoe](https://orcid.org/0000-0002-2961-9670) at VU Amsterdam / CommonWL project leader
 
 ---
 
-# Motivation
+# Problem statement
 
---
+.columns[
 
-The VESTEC (Visual Exploration and Sampling Toolkit for Extreme
-Computing) project seeks to fuse HPC and real-time data for urgent
-decision making for disaster response.
+.col2[
+The VESTEC (Visual Exploration and Sampling Toolkit for Extreme Computing) project seeks to fuse HPC and real-time data for urgent decision making for disaster response.
 
-Example use cases around simulation of wildfires, space weather event,
-and mosquito-borne disease.
+We need to run workflows that included MPI-parallelised applications on HPC.
 
+We didn't want to reinvent all the wheels.
+
+(But we did create a custom workflow management system, see G. Gibb *et al.*, UrgentHPC workshop 2020)
+
+]
+.col2[
+Example workflow from VESTEC of wild fire monitoring
+
+.center[
+![:scale_img 90%](wildfire-full.png)
+]
+
+*Thanks to Gordon Gibb for the image*
+]
+]
 
 ???
 
@@ -37,6 +59,9 @@ Rupe, Nick, Max are working on VESTEC
 
 VESTEC clearly requires a workflow approach, in part to automate
 as much as possible for speed and accuracy
+
+VESTEC has created a custom workflow management system, see
+G. Gibb *et al.*, UrgentHPC workshop 2020
 
 ---
 # Example use case: Wildfire
