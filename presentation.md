@@ -202,7 +202,12 @@ to start programs, but recommends that this method be available.
 ---
 # Common Workflow Language
 
-Michael pls add a slide or two for you to introduce CWL
+CWL defines a standard for describing command line tools and workflows made from those tools.
+
+It aims to model the requirements of those tools explicitly to enable flexibility and portability.
+
+For example, if you want to use Docker, you don't manually specify "docker run my_container foo"; you say which Docker format container is recommended or required. The workflow engine sets up everything else.
+![CWL Logo](https://github.com/common-workflow-language/logo/raw/main/CWL-Logo-HD.png)
 
 ???
 
@@ -408,6 +413,8 @@ SALAD Schema for new requirement, [source](https://github.com/common-workflow-la
 
 ]
 ]
+
+???
 
 ???
 
@@ -742,16 +749,14 @@ Speaker: Michael
 
 
 Another challenge to supporting the execution of portable workflows on
-supercomputers is the requirement for custom-compiled software.
-
-(Software containers are not widely used on HPC systems performance/security/historical reasons.)
-
-The CWL reference runner has a feature which maps these software
-identifiers to locally available software packages, and loads them in
-a site-specific way using a local configuration.
-
-We have adopted this same approach within the VESTEC system, which
-ensures that our workflows are portable between target HPC systems.
+supercomputers is the requirement for custom-compiled software and the
+lack of software containers for performance reasons. This is somewhat
+orthogonal to the classic CWL approach, as the standards have long
+supported both software containers and references to the name (and
+published identifier, if available) of the software tool. The CWL
+reference runner [has a feature which maps these software identifiers to
+locally available software packages](https://github.com/common-workflow-language/cwltool/#leveraging-softwarerequirements-beta), and loads them 
+in a site-specific way using a local configuration. We have adopted this same approach within the VESTEC system, which ensures that our workflows are portable between target HPC systems.
 
 ???
 
@@ -858,3 +863,14 @@ Speaker: Rupe & Michael
 
 num of MPI procs can be hard coded, supplied as an input directly, or
 calculated in any way allowed by a JavaScript expression
+
+---
+# Acknowledgements
+ 
+Thanks!
+
+VESTEC
+
+https://www.commonwl.org/
+
+https://github.com/common-workflow-language/cwltool/#running-mpi-based-tools-that-need-to-be-launched
