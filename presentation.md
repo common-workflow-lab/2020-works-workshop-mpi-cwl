@@ -14,6 +14,10 @@ template: titleslide
 1. CWL+MPI works for us (with bonus features!)
 1. What do you all think?
 
+???
+
+Speaker: Rupe
+
 ---
 
 # Who?
@@ -29,6 +33,10 @@ template: titleslide
 - [Michael R. Crusoe](https://orcid.org/0000-0002-2961-9670) at VU Amsterdam / CommonWL project leader
 
 ![:scale_img 12%](MichaelRCrusoe.png)
+
+???
+
+Speaker: Rupe
 
 ---
 
@@ -59,6 +67,8 @@ Example workflow from VESTEC of wild fire monitoring.
 ]
 
 ???
+
+Speaker: Rupe
 
 Want to tell a bit of a story about how this work came about.
 
@@ -98,6 +108,8 @@ We found that CWL could do most of this.
 
 ???
 
+Speaker: Rupe
+
 Needed to have control over whether, where, and with what parameters parts of the
 workflow run
 
@@ -115,6 +127,9 @@ Spoiler alert: CWL
 1. CWL+MPI works for us (with bonus features!)
 1. What do you all think?
 
+???
+
+Speaker: Rupe
 
 ---
 # Message Passing Interface
@@ -139,6 +154,8 @@ mpiexec -n $NPROCS $APPLICATION $ARGS
 
 ???
 
+Speaker: Rupe
+
 With apologies to audience members, this is MPI in one slide
 
 The MPI standard specifically does not require this or any other way
@@ -151,7 +168,9 @@ Michael pls add a slide or two for you to introduce CWL
 
 ???
 
-Do you want to cover why MPI progs don't work in standard CWL? MPI affects scheduling and executation
+Speaker: Michael
+
+Do you want to cover why MPI progs don't work in standard CWL? MPI affects scheduling and execution
 I.e. the following are implementation/system dependent:
  - the actual name of the `mpiexec` command
  - the flag to set number of processes
@@ -202,6 +221,10 @@ INFO Final process status is success
 ]
 ]
 
+???
+
+Speaker: Michael
+
 ---
 # Talk Overview
 
@@ -211,6 +234,9 @@ INFO Final process status is success
 1. CWL+MPI works for us (with bonus features!)
 1. What do you all think?
 
+???
+
+Speaker: Michael
 
 ---
 # A first attempt within standard MPI
@@ -261,6 +287,8 @@ outputs: []
 
 ???
 
+Speaker: Rupe
+
 After reaching out to the CWL community and starting to work with
 Michael, it became clear that MPI execution had to be treated
 differently and integrated with the job runner, comparable to software
@@ -300,6 +328,10 @@ mechanism:
 ]
 ]
 
+???
+
+Speaker: Michael
+
 ---
 # Extension to the CWL specification
 .columns[
@@ -336,6 +368,9 @@ This was added to the CWL reference runner as an extension, requiring the `--ena
 ]
 
 ???
+
+Speaker: Michael
+
  (we
 treat the case of zero processes requested as being equivalent to
 disabling the requirement).
@@ -400,6 +435,10 @@ outputs: []
 ]
 ]
 
+???
+
+Speaker: Michael & Rupe
+
 ---
 # Platform configuration
 
@@ -418,6 +457,8 @@ the platform configuration data.
 
 ???
 
+Speaker: Rupe
+
 Within the runner, this argument, if present, is used to configure the
 MPI runtime. When a tool is actually executed, the runner checks for the
 `MPIRequirement`, evaluates the processes attribute and, if present and
@@ -425,7 +466,6 @@ non-zero, it uses the configuration data, to construct the appropriate
 command line which is prepended to the tool's command line
 
 I'll show an example below
-
 
 
 
@@ -446,6 +486,8 @@ A modest number of unit tests
 Use within VESTEC WMS to wrap individual tasks
 
 ???
+
+Speaker: Rupe
 
 Unanticipated benefits
 
@@ -477,6 +519,8 @@ Purple: output(s)
 ]
 
 ???
+
+Speaker: Rupe
 
 This workflow
 - uses one or more global weather forecasts from the US NOAA Global
@@ -529,6 +573,8 @@ env_pass_regex: ["SLURM_.*"]
 ]
 
 ???
+
+Speaker: Rupe
 
 Monitoring the performance of parallel applications is particularly
 important when they may be running across thousands of cores and is very
@@ -596,6 +642,8 @@ Ran on DLR cluster (4 x 14 core Intel Xeon Gold 6132 per node)
 ]
 ???
 
+Speaker: Rupe
+
 Why HPCG? the application reports its own
 estimates of the floating point performance achieved, allowing us to
 have some confidence that the reported numbers are correct.
@@ -621,11 +669,15 @@ Another unanticipated benefit: actually doing workflows
 ---
 # Containers
 
-Michael?
+Also tested successfully (once) with the Singularity software container engine using a Docker format software container. 
+
+Speaker: Michael
 
 
---
+---
+
 # Software requirements
+
 
 Another challenge to supporting the execution of portable workflows on
 supercomputers is the requirement for custom-compiled software and the
@@ -638,6 +690,13 @@ locally available software packages, and loads them in a site-specific
 way using a local configuration\[3\]. We have adopted this same approach
 within the VESTEC system, which ensures that our workflows are portable
 between target HPC systems.
+
+???
+
+Speaker: Rupe
+
+Wired cwltool + SoftwareRequirements to `module load FOOBAR`
+
 ---
 # Talk Overview
 
@@ -673,6 +732,9 @@ Other suggestions would be appreciated!
 
 ???
 
+Speaker: Rupe
+
+
 The number of processes is probably the most important parameter but
 everyone who's been doing HPC for a while knows there's a lot more
 
@@ -693,7 +755,9 @@ More complete testing with software containers
 
 ???
 
-Working towards version 4.0 at present
+Speaker: Rupe
+
+Working towards MPI version 4.0 at present
 
 Thread support can be one of 4 levels (SINGLE, FUNNELED, SERIALIZED,
 MULTIPLE)
@@ -722,6 +786,8 @@ Goal: progress `MPIRequirement` or equivalent to CWL standard
 
 
 ???
+
+Speaker: Rupe & Michael
 
 num of MPI procs can be hard coded, supplied as an input directly, or
 calculated in any way allowed by a JavaScript expression
