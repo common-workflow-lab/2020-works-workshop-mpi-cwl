@@ -869,7 +869,12 @@ calculated in any way allowed by a JavaScript expression
  
 Thanks!
 
-VESTEC
+Much of this work was funded under the EU FET VESTEC H2020 project, grant
+agreement number 800904 (https://vestec-project.eu)
+>>>>>>> a060b32... details of acks for VESTEC/ARCHER
+
+This work used the ARCHER UK National Supercomputing Service
+(<http://www.archer.ac.uk>).
 
 https://www.commonwl.org/
 
