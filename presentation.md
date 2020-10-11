@@ -541,9 +541,18 @@ in VESTEC had a few unanticipated bonuses
 ---
 # We showed that it works
 
+.columns[
+.col2[
 A modest number of unit tests.
 
 Used within VESTEC WMS to wrap individual tasks.
+]
+.col2[
+![:scale_img 100%](wfa.png)
+]
+
+Wildfire simulation results.
+]
 
 ???
 
