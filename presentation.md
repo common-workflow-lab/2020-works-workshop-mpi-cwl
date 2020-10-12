@@ -278,7 +278,7 @@ within a tool description, RWN created a few functions to
 programmatically insert the necessary MPI job launch commands to the
 front of the command line string.
 
-- � Worked on laptop
+- 😀 Worked on laptop
 - 😀 Worked on ARCHER (Cray XC30, UK National Supercomputing Service)
 - 😐 Requires NodeJS
 - 🤢 Ugly tool description
@@ -533,7 +533,7 @@ A modest number of unit tests.
 
 Used within VESTEC WMS to wrap individual tasks.
 
-- � Worked on laptop
+- 😀 Worked on laptop
 - 😀 Worked on ARCHER (Cray XC30, UK National Supercomputing Service)
 - 😀 No JS required
 - 🙂 Tool description minimal extension for MPI
