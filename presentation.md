@@ -101,20 +101,9 @@ Speaker: Rupe
 
 Rupe, Nick, Max are working on VESTEC.
 
-VESTEC clearly requires a workflow approach, in part to automate
-as much as possible for speed and accuracy.
+We needed a workflow system to manage the steps efficiently, inccluding parallel simulation(s) on HPC (10--10,000 cores)
 
-The simplest case requires
-- receiving data
-- pre-processing
-- parallel simulation(s) on HPC (10--10,000 cores)
-- post-processing
-- making data available to decision makers
-
-
-More complex cases launching
-further simulations in response to results or new data, allowing
-what-if scenario exploration, interactive visualisation of results.
+Gordon will talk about the details in his talk
 
 ---
 # Problem statement
@@ -147,8 +136,7 @@ Randall Monroe, https://xkcd.com/2140/
 
 Speaker: Rupe
 
-Needed to have control over whether, where, and with what parameters parts of the
-workflow run
+Needed to have control over whether, where, and with what parameters parts of the workflow run to deal with new data/user interaction
 
 But didn't want to reinvent all the wheels, nor to hack together a
 bunch of bash scripts on each HPC machine used
@@ -213,7 +201,7 @@ For example, if you want to use Docker, you don't manually specify "docker run m
 
 Speaker: Michael
 
-Do you want to cover why MPI progs don't work in standard CWL? MPI affects scheduling and execution
+Do you want to cover why MPI progs don't work in standard CWL? 
 I.e. the following are implementation/system dependent:
  - the actual name of the `mpiexec` command
  - the flag to set number of processes
@@ -290,8 +278,8 @@ within a tool description, RWN created a few functions to
 programmatically insert the necessary MPI job launch commands to the
 front of the command line string.
 
-- 🙂 Worked on laptop
-- 🙂 Worked on ARCHER (Cray XC30, UK National Supercomputing Service)
+- � Worked on laptop
+- 😀 Worked on ARCHER (Cray XC30, UK National Supercomputing Service)
 - 😐 Requires NodeJS
 - 🤢 Ugly tool description
 - ☹️ Failed on SLURM-based cluster (requires environment variables to be set)
@@ -544,6 +532,15 @@ in VESTEC had a few unanticipated bonuses
 A modest number of unit tests.
 
 Used within VESTEC WMS to wrap individual tasks.
+
+- � Worked on laptop
+- 😀 Worked on ARCHER (Cray XC30, UK National Supercomputing Service)
+- 😀 No JS required
+- 🙂 Tool description minimal extension for MPI
+- 😀 Worked on SLURM-based cluster
+- 😐 Worked once with Singularity container engine
+
+
 ]
 .col2[
 ![:scale_img 100%](wfa.png)
