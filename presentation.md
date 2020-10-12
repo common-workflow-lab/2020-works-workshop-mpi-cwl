@@ -137,9 +137,9 @@ We found that CWL was our closest match.
 
 ]
 .col2[
-![XKCD standards](https://imgs.xkcd.com/comics/standards.png)
+![XKCD wheel](https://imgs.xkcd.com/comics/reinvent_the_wheel.png)
 
-Randall Monroe, https://xkcd.com/927/
+Randall Monroe, https://xkcd.com/2140/
 ]
 ]
 
@@ -782,6 +782,8 @@ this same approach within the VESTEC system, which ensures that our
 workflows are portable between target HPC systems.
 
 ```
+# The CWL reference runner and toil-cwl-runner can transform the above
+# `SoftwareRequirement` into a site specific command like:
 module load mesonh/5.4.2-LXifort-O2
 ```
 
@@ -842,13 +844,15 @@ everyone who's been doing HPC for a while knows there's a lot more
   domain? How do you tell your `mpirun` program this?
 
 ---
-# Limitations
+# Future Work
 
 Specify version of the MPI standard required.
 
 Specify level of thread support required by application.
 
 More complete testing with software containers.
+
+Extend [CWLProv](https://w3id.org/cwl/prov/) to capture more run time information, like `module load` invocations
 
 ???
 
