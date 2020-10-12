@@ -416,8 +416,6 @@ SALAD Schema for new requirement, [source](https://github.com/common-workflow-la
 
 ???
 
-???
-
 Speaker: Michael
 
 We treat the case of zero processes requested as being equivalent to
@@ -744,12 +742,13 @@ configuration file!
 
 Also tested successfully (once) with the Singularity software container engine using a Docker format software container. 
 
+???
+Speaker: Michael
+
 Mention the "classic CWL approach, as the standards have long
 supported both software containers and references to the name (and
 published identifier, if available) of the software tool".
 
-???
-Speaker: Michael
 
 
 ---
@@ -759,13 +758,18 @@ Speaker: Michael
 
 Another challenge to supporting the execution of portable workflows on
 supercomputers is the requirement for custom-compiled software and the
-lack of software containers for performance reasons. This is somewhat
-orthogonal to the classic CWL approach, as the standards have long
-supported both software containers and references to the name (and
-published identifier, if available) of the software tool. The CWL
-reference runner [has a feature which maps these software identifiers to
-locally available software packages](https://github.com/common-workflow-language/cwltool/#leveraging-softwarerequirements-beta), and loads them 
-in a site-specific way using a local configuration. We have adopted this same approach within the VESTEC system, which ensures that our workflows are portable between target HPC systems.
+lack of software containers for performance reasons.
+
+This is somewhat orthogonal to the classic CWL approach, as the standards
+have long supported both software containers and references to the name
+(and published identifier, if available) of the software tool.
+
+The CWL reference runner [has a feature which maps these software
+identifiers to locally available software
+packages](https://github.com/common-workflow-language/cwltool/#leveraging-softwarerequirements-beta),
+and loads them in a site-specific way using a local configuration. We
+have adopted this same approach within the VESTEC system, which ensures 
+that our workflows are portable between target HPC systems.
 
 ???
 
@@ -880,7 +884,6 @@ Thanks!
 
 Much of this work was funded under the EU FET VESTEC H2020 project, grant
 agreement number 800904 (https://vestec-project.eu)
->>>>>>> a060b32... details of acks for VESTEC/ARCHER
 
 This work used the ARCHER UK National Supercomputing Service
 (<http://www.archer.ac.uk>).
