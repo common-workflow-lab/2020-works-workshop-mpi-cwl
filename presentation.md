@@ -77,7 +77,7 @@ a solution
 
 The VESTEC (Visual Exploration and Sampling Toolkit for Extreme Computing) project seeks to fuse HPC and real-time data for urgent decision making for disaster response.
   
-We need to run workflows that included MPI-parallelised applications on HPC.
+We need to run workflows that include MPI-parallelised applications on HPC.
 
 We didn't want to reinvent all the wheels.
 
@@ -764,12 +764,26 @@ This is somewhat orthogonal to the classic CWL approach, as the standards
 have long supported both software containers and references to the name
 (and published identifier, if available) of the software tool.
 
+``` yaml
+hints:
+  SoftwareRequirement:
+    packages:
+      Meso-NH:
+        version: ["5.4.2"]
+```
+
 The CWL reference runner [has a feature which maps these software
 identifiers to locally available software
 packages](https://github.com/common-workflow-language/cwltool/#leveraging-softwarerequirements-beta),
-and loads them in a site-specific way using a local configuration. We
-have adopted this same approach within the VESTEC system, which ensures 
-that our workflows are portable between target HPC systems.
+and loads them in a site-specific way using a local configuration.
+
+We [have adopted](https://github.com/VESTEC-EU/app-cwl/blob/main/test/archer/mesonh-modules.yml)
+this same approach within the VESTEC system, which ensures that our
+workflows are portable between target HPC systems.
+
+```
+module load mesonh/5.4.2-LXifort-O2
+```
 
 ???
 
