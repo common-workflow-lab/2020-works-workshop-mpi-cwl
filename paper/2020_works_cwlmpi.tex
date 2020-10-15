@@ -1,242 +1,53 @@
-%% bare_conf.tex
-%% V1.4b
-%% 2015/08/26
-%% by Michael Shell
-%% See:
-%% http://www.michaelshell.org/
-%% for current contact information.
-%%
-%% This is a skeleton file demonstrating the use of IEEEtran.cls
-%% (requires IEEEtran.cls version 1.8b or later) with an IEEE
-%% conference paper.
-%%
-%% Support sites:
-%% http://www.michaelshell.org/tex/ieeetran/
-%% http://www.ctan.org/pkg/ieeetran
-%% and
-%% http://www.ieee.org/
-
-%%*************************************************************************
-%% Legal Notice:
-%% This code is offered as-is without any warranty either expressed or
-%% implied; without even the implied warranty of MERCHANTABILITY or
-%% FITNESS FOR A PARTICULAR PURPOSE! 
-%% User assumes all risk.
-%% In no event shall the IEEE or any contributor to this code be liable for
-%% any damages or losses, including, but not limited to, incidental,
-%% consequential, or any other damages, resulting from the use or misuse
-%% of any information contained here.
-%%
-%% All comments are the opinions of their respective authors and are not
-%% necessarily endorsed by the IEEE.
-%%
-%% This work is distributed under the LaTeX Project Public License (LPPL)
-%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
-%% distributed and modified. A copy of the LPPL, version 1.3, is included
-%% in the base LaTeX documentation of all distributions of LaTeX released
-%% 2003/12/01 or later.
-%% Retain all contribution notices and credits.
-%% ** Modified files should be clearly indicated as such, including  **
-%% ** renaming them and changing author support contact information. **
-%%*************************************************************************
-
-
-% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
-% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
-% *** with production work. The IEEE's font choices and paper sizes can   ***
-% *** trigger bugs that do not appear when using other class files.       ***                          ***
-% The testflow support page is at:
-% http://www.michaelshell.org/tex/testflow/
-
-
-
 \documentclass[conference]{IEEEtran}
-% Some Computer Society conferences also require the compsoc mode option,
-% but others use the standard conference format.
-%
-% If IEEEtran.cls has not been installed into the LaTeX system files,
-% manually specify the path to it like:
-% \documentclass[conference]{../sty/IEEEtran}
 
-
-% *** CITATION PACKAGES ***
-%
 \usepackage{cite}
-% cite.sty was written by Donald Arseneau
-% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
-% \cite{} output to follow that of the IEEE. Loading the cite package will
-% result in citation numbers being automatically sorted and properly
-% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
-% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
-% \cite will automatically add leading space, if needed. Use cite.sty's
-% noadjust option (cite.sty V3.8 and later) if you want to turn this off
-% such as if a citation ever needs to be enclosed in parenthesis.
-% cite.sty is already installed on most LaTeX systems. Be sure and use
-% version 5.0 (2009-03-20) and later if using hyperref.sty.
-% The latest version can be obtained at:
-% http://www.ctan.org/pkg/cite
-% The documentation is contained in the cite.sty file itself.
-
-
-
-
-
-
-% *** GRAPHICS RELATED PACKAGES ***
-%
-\ifCLASSINFOpdf
-  \usepackage[pdftex]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../pdf/}{../jpeg/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-\else
-  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
-  % will default to the driver specified in the system graphics.cfg if no
-  % driver is specified.
-  % \usepackage[dvips]{graphicx}
-  % declare the path(s) where your graphic files are
-  % \graphicspath{{../eps/}}
-  % and their extensions so you won't have to specify these with
-  % every instance of \includegraphics
-  % \DeclareGraphicsExtensions{.eps}
-\fi
-% graphicx was written by David Carlisle and Sebastian Rahtz. It is
-% required if you want graphics, photos, etc. graphicx.sty is already
-% installed on most LaTeX systems. The latest version and documentation
-% can be obtained at: 
-% http://www.ctan.org/pkg/graphicx
-% Another good source of documentation is "Using Imported Graphics in
-% LaTeX2e" by Keith Reckdahl which can be found at:
-% http://www.ctan.org/pkg/epslatex
-%
-% latex, and pdflatex in dvi mode, support graphics in encapsulated
-% postscript (.eps) format. pdflatex in pdf mode supports graphics
-% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
-% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
-% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
-% which can result in "jaggedy"/blurry rendering of lines and letters as
-% well as large increases in file sizes.
-%
-% You can find documentation about the pdfTeX application at:
-% http://www.tug.org/applications/pdftex
-
-
-
-
-% *** SUBFIGURE PACKAGES ***
-\ifCLASSOPTIONcompsoc
-%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
-\else
-%  \usepackage[caption=false,font=footnotesize]{subfig}
-\fi
-% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
-% for subfigure.sty, the latter of which is no longer maintained and is
-% incompatible with some LaTeX packages including fixltx2e. However,
-% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
-% which will override IEEEtran.cls' handling of captions and this will result
-% in non-IEEE style figure/table captions. To prevent this problem, be sure
-% and invoke subfig.sty's "caption=false" package option (available since
-% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
-% handling of captions.
-% Note that the Computer Society format requires a larger sans serif font
-% than the serif footnote size font used in traditional IEEE formatting
-% and thus the need to invoke different subfig.sty package options depending
-% on whether compsoc mode has been enabled.
-%
-% The latest version and documentation of subfig.sty can be obtained at:
-% http://www.ctan.org/pkg/subfig
-
-
+\usepackage[pdftex]{graphicx}
 
 \usepackage{stfloats}
-% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
-% the ability to do double column floats at the bottom of the page as well
-% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
-% LaTeX2e). It also provides a command:
-%\fnbelowfloat
-% to enable the placement of footnotes below bottom floats (the standard
-% LaTeX2e kernel puts them above bottom floats). This is an invasive package
-% which rewrites many portions of the LaTeX2e float routines. It may not work
-% with other packages that modify the LaTeX2e float routines. The latest
-% version and documentation can be obtained at:
-% http://www.ctan.org/pkg/stfloats
-% Do not use the stfloats baselinefloat ability as the IEEE does not allow
-% \baselineskip to stretch. Authors submitting work to the IEEE should note
-% that the IEEE rarely uses double column equations and that authors should try
-% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
-% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
-% such ways.
-% Do not attempt to use stfloats with fixltx2e as they are incompatible.
-% Instead, use Morten Hogholm'a dblfloatfix which combines the features
-% of both fixltx2e and stfloats:
-%
-% \usepackage{dblfloatfix}
-% The latest version can be found at:
-% http://www.ctan.org/pkg/dblfloatfix
-
-
-
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
 \usepackage{url}
-% url.sty was written by Donald Arseneau. It provides better support for
-% handling and breaking URLs. url.sty is already installed on most LaTeX
-% systems. The latest version and documentation can be obtained at:
-% http://www.ctan.org/pkg/url
-% Basically, \url{my_url_here}.
-
-
-
-
-% *** Do not adjust lengths that control margins, column widths, etc. ***
-% *** Do not use packages that alter fonts (such as pslatex).         ***
-% There should be no need to do such things with IEEEtran.cls V1.6 and later.
-% (Unless specifically asked to do so by the journal or conference you plan
-% to submit to, of course. )
-% \usepackage{listings}
 \usepackage{booktabs}
 \usepackage{minted}
-
 \usepackage{siunitx}
+
 \DeclareSIUnit{\FLOP}{FLOP}
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
 
 \newcommand{\cwl}[1]{\mintinline{yaml}{#1}}
 \usepackage{multicol}
+
 \begin{document}
-%
-% paper title
-% Titles are generally capitalized except for words such as a, an, and, as,
-% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
-% not capitalized unless they are the first or last word of the title.
-% Linebreaks \\ can be used within to get better formatting as desired.
-% Do not put math or special symbols in the title.
 \title{Supercomputing with MPI meets the Common Workflow Language standards: an experience report}
 
 % author names and affiliations
 % use a multiple column layout for up to three different
 % affiliations
-\author{\IEEEauthorblockN{Rupert W. Nash, Nick Brown}
-\IEEEauthorblockA{EPCC, The University of Edinburgh\\
-Edinburgh, United Kingdom\\
-Email: \{r.nash, n.brown\}@epcc.ed.ac.uk}
-\and
-\IEEEauthorblockN{Michael R. Crusoe}
-\IEEEauthorblockA{Vrije Universiteit; Amsterdam, NL \\
-ELIXIR-NL/DTL Projects\\
-Email: mrc@commonwl.org}
-\and
-\IEEEauthorblockN{Max Kontak}
-\IEEEauthorblockA{DLR German Aerospace Center\\
-Institute for Software Technology\\
-High-Performance Computing\\
-Cologne, Germany}
-}
 
+\author{\IEEEauthorblockN{
+    Rupert W. Nash\IEEEauthorrefmark{1},
+    Michael R. Crusoe\IEEEauthorrefmark{2}\IEEEauthorrefmark{3},
+    Max Kontak\IEEEauthorrefmark{4}, and
+    Nick Brown\IEEEauthorrefmark{1}
+  }\\
+  \IEEEauthorblockA{
+    \IEEEauthorrefmark{1}
+    EPCC, The University of Edinburgh, Edinburgh, United Kingdom\\
+    Email: \{r.nash, n.brown\}@epcc.ed.ac.uk
+  }
+  \IEEEauthorblockA{
+    \IEEEauthorrefmark{2}
+    Vrije Universiteit Amsterdam, Amsterdam, NL
+  }
+  \IEEEauthorblockA{\IEEEauthorrefmark{3}
+    ELIXIR-NL/DTL Projects\\
+    Email: mrc@commonwl.org
+  }
+  \IEEEauthorblockA{\IEEEauthorrefmark{4}
+    Institute for Software Technology, DLR German Aerospace
+      Center, Cologne, Germany\\
+    Email: max.kontak@dlr.de
+  }
+}
 
 % make the title area
 \maketitle
@@ -249,21 +60,11 @@ Use of standards-based workflows is still somewhat unusual by high-performance c
 
 % no keywords
 
-% For peer review papers, you can put extra information on the cover
-% page as needed:
-% \ifCLASSOPTIONpeerreview
-% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
-% \fi
-%
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
-
 \section{Introduction}
 % no \IEEEPARstart
 The use of standards-based workflows in HPC is a small, but growing, area of our community. As developers start to recognise the benefits that workflows can deliver, then they often find that the automation, structure, abstraction, and portability that workflows can provide, delivers significant productivity benefits in the long term. One such user is the VESTEC project, which required the ability to describe the execution of applications, and then invoke them on a supercomputer. The specific requirements in this instance included the ability to describe the inputs, to execute the tool itself, and then to collect the any generated outputs. Furthermore, it was highly desirable that these steps would be represented in a structured, and ideally standard, fashion. VESTEC team members (Nash, Brown, Kontak) found that the \cwl{CommandLineTool} concept from the Common Workflow Language v1.1 standard~\cite{cwl10} and the CWL reference runner ("cwltool")\footnote{\url{https://github.com/common-workflow-language/cwltool}} satisfied these requirements, but with one crucial caveat: namely that many of our tools were MPI-parallelised applications and this is not yet directly supported by the CWL standard.
 
-The VESTEC (Visual Exploration and Sampling Toolkit for Extreme Computing) project aims to fuse HPC with real-time data for urgent decision making for disaster response. This project involves numerous simulation codes to run on HPC machines, and the requirement to couple these together such that the output from one code can be used as an input to others. CWL looked to be an attractive option to provide this in a structured manner on production machines with existing MPI implementations. However a key requirement was the ability to drive this from within a batch submission script, where the batch job itself allocates a number available nodes and starts the CWL tool, and this engine is then able to interact with the MPI runner in order to direct the launch parameters, such as number of MPI processes and placement. Furthermore, this needed to be easily configurable by the user, for each step in the CWL workflow. As it stood, this functionality was not available.
+The VESTEC (Visual Exploration and Sampling Toolkit for Extreme Computing) project aims to fuse HPC with real-time data for urgent decision making for disaster response. This project involves running simulation codes on HPC machines, and the requirement to couple these together such that the output from one code can be used as an input to others. CWL looked to be an attractive option to provide this in a structured manner on production machines with existing MPI implementations. However a key requirement was the ability to drive this from within a batch submission script, where the batch job itself allocates a number available nodes and starts the CWL tool, and this engine is then able to interact with the MPI runner in order to direct the launch parameters, such as number of MPI processes. Furthermore, this needed to be easily configurable by the user, for each step in the CWL workflow. As it stood, this functionality was not available.
 
 In figure~\ref{fig:mnh-wf} we illustrate a representation of one of the CWL workflows used within the project. This workflow consumes one or more global weather forecasts from the US NOAA Global Forecast System\footnote{\url{https://www.ncdc.noaa.gov/data-access/model-data/model-datasets/global-forcast-system-gfs}}, and interpolates the meterological fields onto the domain for the simulation (specified by the input \verb`pdg`, \emph{i.e.} the physiographic data). 
 It then runs the Meso-NH~\cite{mnh54} mesoscale atmospheric simulation application in parallel (as specified by the \verb`sim_processes` input) using the GFS data provided as initial and boundary conditions, for an experiment of simulated duration \verb`segment_length`. The outputs of this simulation are then post-processed by a script into a single netCDF file with the fields of interest for use later in the outer workflow.
@@ -281,8 +82,6 @@ We have created an extension to the CWL standard to allow a tool description to 
 
 Another challenge to supporting the execution of portable workflows on supercomputers is the requirement for custom-compiled software and the lack of software containers for performance reasons.
 This is somewhat orthogonal to the classic CWL approach, as the standards have long supported both software containers and references to the name (and published identifier, if available) of the software tool. The CWL reference runner has a feature which maps these software identifiers to locally available software packages, and loads them in a site-specific way using a local configuration\footnote{\url{https://github.com/common-workflow-language/cwltool/blob/main/README.rst#leveraging-softwarerequirements-beta} using a library from the Galaxy Project\cite{galaxy}}. We have adopted this same approach within the VESTEC system, which ensures that our workflows are portable between target HPC systems.
-
-%Regardless of choice of local software package management system (modules, easybuild, spack, \emph{inter alia})
 
 
 This paper is organised as follows, in Section \ref{sec:bg} we briefly explored related work and alternatively systems which aim to solve the problem, but often do so in a manner not suited to our requirements in VESTEC. This is followed by Section \ref{sec:imp} which describes the extensions made to the CWL reference runner in order to support a knowledge of MPI and the ability to control important parameters from workflow scripts. Section \ref{sec:performance} then describes the use of these extensions to not only drive the execution of workflow tasks via MPI, but furthermore demonstrates the ability to gather performance metrics by calling into profiling tools, such as LIKWID~\cite{likwid_paper} in this example, which is often an important activity in HPC. Section \ref{sec:conclusions} then concludes this paper, summarising our findings, experience and discussing further work. In particular, we pose questions to the wider HPC workflow community about whether this approach is the correct one for extending the CWL specification.
@@ -311,7 +110,7 @@ The Common Workflow Language open standards\cite{cwl10} are a set of community d
 \label{sec:imp}
 It is worth noting that while the MPI standard deliberately does not require a particular method for starting MPI programs, they are typically started with a job launcher command similar to that recommended in the standard: \texttt{mpiexec -n <num processes> <executable> <program arguments>}. Additionally, the job launcher may not run on one of the machine that will actually execute the program (indeed this is the case for one of the machines used by VESTEC: ARCHER, a Cray XC30 system). Further, the job launch command may require environment variables to be set in order to communicate, \emph{e.g.} which nodes are available for use, as is common on clusters using SLURM.
 
-%As discussed in section~\ref{sec:bg}, most workflow systems either do not consider MPI at all or are tightly integrated with it, offering a scheduler-worker paradigm allocating a subset of MPI ranks to each task in the executing workflow.
+
 Since CWL lacks structured MPI support, the so-called base command of the tool description would become either: the platform specific \verb`mpiexec`, thus negating portability of the tool description and relegating the actual application to merely an argument; or a custom wrapper script which interposes between CWL and the tool imposing an greater burden upon either the tool or tool description author.
 
 Before extending the CWL specification and reference runner, we first attempted to use the CWL feature of using JavaScript embedded in the tool description to programmatically insert the necessary MPI job launch commands to the front of the command line string. Unfortunately this required a somewhat convoluted job description file, as can be seen by comparing examples (a) and (b) from listing~\ref{list:hello} which show, respectively, the (serial) "Hello world" example from the CWL tutorial\footnote{\url{https://www.commonwl.org/user_guide/02-1st-example/index.html}} and a version which launches multiple copies of the same in parallel via MPI.
@@ -532,7 +331,7 @@ We can also see that the number of floating-point operations per rank only drops
 Of course this needs to analysed in more detail for a reliable assessment of the scaling properties.
 In Table~\ref{tab:results}, we have also provided the measured number of scalar and packed micro-operations, which indicate that the compiler was not able to generate SIMD (single instruction, multiple data) instructions from the HPCG code efficiently. This gives a hint to possible performance optimizations.
 
-All in all, in this section we have shown a simple proof-of-concept on how the presented CWL extension can be used for an MPI-parallel application and how easily the flexible design of the extension allows us to perform performance measurements.
+In this section we have shown a simple proof-of-concept on how the presented CWL extension can be used for an MPI-parallel application and how easily the flexible design of the extension allows us to perform performance measurements.
 
 
 \section{Conclusion}
@@ -552,7 +351,6 @@ To further demonstrate the applicability of such a \cwl{MPIRequirement} language
 
 With our primary goal being to submit the \cwl{MPIRequirement} (or some equivalent) feature for inclusion into a future version of the CWL standard, we aim for this paper to serve, in part, as a request for comment from the wider HPC and workflow communities. We believe that the work explored here has a real world application to further exploiting HPC machines via workflows, and as such the authors would be grateful to receive any comments or suggestions, either via email or public CWL forums\footnote{\url{https://www.commonwl.org/#Support}}.
 
-% use section* for acknowledgment
 \section*{Acknowledgment}
 This work was funded under the EU FET VESTEC H2020 project, grant agreement number 800904.
 This work used the ARCHER UK National Supercomputing Service (\url{http://www.archer.ac.uk}).
@@ -564,8 +362,7 @@ This work used the ARCHER UK National Supercomputing Service (\url{http://www.ar
 % number - used to balance the columns on the last page
 % adjust value as needed - may need to be readjusted if
 % the document is modified later
-%\todo[inline]{Ensure last page is column balanced; see comment in \LaTeX.}
-\IEEEtriggeratref{9}
+%\IEEEtriggeratref{25}
 % The "triggered" command can be changed if desired:
 %\IEEEtriggercmd{\enlargethispage{-5in}}
 
